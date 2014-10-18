@@ -121,24 +121,39 @@ $colorQuestions = array(
     )
 );
 
-$app->get('/', function() use($app, $colorQuestions){
+$app->get('/', function() use($app, $colorQuestions) {
     // Get Random Question
     $questions = function() use($colorQuestions) {
         $keys = array_keys($colorQuestions);
         shuffle($keys);
         $shuffled = array();
-        foreach ($keys as $key) 
-        {
+        foreach ($keys as $key) {
             $shuffled[$key] = $colorQuestions[$key];
         }
          return $shuffled;
     };
     // Render Result
-    $app->render('index.html', array(
+    $app->render('index.html', array (
         'questions' => $questions() 
     ));
+});
+
+$app->post('/answers', function() use($app){
 
 });
+
+$app->get('/result', function() use($app){
+
+});
+
+$app->get('/about', function() use($app){
+
+});
+
+$app->get('/page/:title', function($title) use($app){
+
+});
+
 
 /*** Run Application ***/
 $app->run();
